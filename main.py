@@ -1,11 +1,5 @@
-class Node:
-    def __init__(self):
-        ...
-
-
-class Edge:
-    def __init__(self):
-        ...
+from graph import Graph
+from node import Node
 
 
 if __name__ == "__main__":

@@ -31,19 +31,3 @@ class Node:
                 return i
             
         return -1
-    
-    def draw(self, canvas, visited: list[str]):
-        visited.append(self.data)
-
-        for edge in self.edges:
-            node = edge[0]
-            if node.data not in visited:
-                canvas.create_line(node.x, node.y, self.x, self.y)
-
-                ax = (node.x + self.x) // 2
-                ay = (node.y + self.y) // 2
-
-                node.draw(canvas, visited)
-
-        canvas.create_oval(self.x-15, self.y-15, self.x+15, self.y+15)
-        canvas.create_text(self.x, self.y, self.data)

@@ -14,34 +14,27 @@ class Main(Tk):
 
         self.l1 = Label(self, text="new vertex name")
         self.e1 = Entry(self)
-        self.l1.pack()
-        self.e1.pack()
+        self.l1.grid(row=0, column=0)
+        self.e1.grid(row=0, column=1)
 
         self.l2 = Label(self, text="edge value (float)")
         self.e2 = Entry(self)
-        self.l2.pack()
-        self.e2.pack()
+        self.l2.grid(row=1, column=0)
+        self.e2.grid(row=1, column=1)
 
         self.b1 = Button(
-            self,
-            text="create edge",
-            command=self.createEdge
-        )
-        self.b1.pack()
-
-        self.b2 = Button(
             self,
             text="clear",
             command=self.clear
         )
-        self.b2.pack()
+        self.b1.grid(row=2, column=0, columnspan=2)
 
         self.canvas = Canvas(
             self,
             height=800,
             width=800
         )
-        self.canvas.pack()
+        self.canvas.grid(row=0, column=2, rowspan=50)
 
         self.canvas.bind("<Button-1>", self.createNode)
         self.canvas.bind("<Button-2>", self.deleteNode)

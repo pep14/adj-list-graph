@@ -15,10 +15,12 @@ class Graph:
         else:
             print("%s already exists." % data)
 
-    def createEdge(self, data0: str, data1: str, edgeValue):
+    def createEdge(self, data0: str, data1: str, edgeValue: float):
         if  data0 in self.nodes and \
             data1 in self.nodes:
             self.nodes[data0].connect(self.nodes[data1], edgeValue)
+        else:
+            print("Node pair does not exist.")
 
     def removeNode(self, data: str):
         self.nodes[data].isolate()
@@ -26,7 +28,7 @@ class Graph:
 
     def draw(self, canvas: tk.Canvas):
         canvas.delete("all")
-        
+
         for node in self.nodes.values():
             for edge in node.edges:
                 adj = edge[0]

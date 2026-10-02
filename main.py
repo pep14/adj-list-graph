@@ -10,8 +10,15 @@ if __name__ == "__main__":
     graph.createNode("1", 50, 50)
     graph.createNode("2", 300, 500)
     graph.createNode("3", 100, 300)
+    graph.createNode("4", 300, 100)
+
     graph.createEdge("1", "2", 50)
     graph.createEdge("1", "3", 100)
+    graph.createEdge("2", "3", 150)
+    graph.createEdge("2", "4", 150)
+    graph.createEdge("3", "4", 150)
+
+    graph.removeNode("3")
     graph.draw(canvas)
 
     canvas.mainloop()

@@ -24,7 +24,21 @@ class Node:
             node.edges[selfIndex][1] = edgeValue
         
         return True
-    
+
+    def isolate(self):
+        edges = self.edges.copy()
+        for edge in edges:
+            node = edge[0]
+            self.mutualDisconnect(node)
+
+    def mutualDisconnect(self, node: Node):
+        self.disconnect(node)
+        node.disconnect(self)
+
+    def disconnect(self, node: Node):
+        i = self.findEdge(node)
+        del self.edges[i]
+
     def findEdge(self, node: Node) -> int:
         for i, edge in enumerate(self.edges):
             if node == edge[0]:

@@ -7,7 +7,7 @@ NODE_SIZE = 15
 
 class Graph:
     def __init__(self):
-        self.nodes: dict[str : Node] = {}
+        self.nodes: dict[str, Node] = {}
 
     def createNode(self, data: str, x, y):
         if data not in self.nodes:
@@ -20,7 +20,13 @@ class Graph:
             data1 in self.nodes:
             self.nodes[data0].connect(self.nodes[data1], edgeValue)
 
+    def removeNode(self, data: str):
+        self.nodes[data].isolate()
+        del self.nodes[data]
+
     def draw(self, canvas: tk.Canvas):
+        canvas.delete("all")
+        
         for node in self.nodes.values():
             for edge in node.edges:
                 adj = edge[0]

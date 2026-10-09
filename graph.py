@@ -26,7 +26,7 @@ class Graph:
             data1 in self.nodes:
             self.nodes[data0].connect(self.nodes[data1], edgeValue)
         else:
-            print("Node pair does not exist.")
+            print("Node pair does not exist.")  
 
     def draw(self, canvas: tk.Canvas) -> None:
         canvas.delete("all")

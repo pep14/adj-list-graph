@@ -2,6 +2,9 @@ from graph import Graph
 from tkinter import *
 
 
+# crown graph to test
+
+
 NODE_SIZE = 15
 
 

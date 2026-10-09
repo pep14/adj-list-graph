@@ -7,6 +7,7 @@ NODE_SIZE = 15
 
 class Graph:
     def __init__(self):
+        self.colors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"]
         self.nodes: dict[str, Node] = {}
 
     def createNode(self, data: str, x, y):
@@ -40,5 +41,7 @@ class Graph:
                 canvas.create_text(ax, ay, text=edge[1])
 
         for node in self.nodes.values():
-            canvas.create_oval(node.x-NODE_SIZE, node.y-NODE_SIZE, node.x+NODE_SIZE, node.y+NODE_SIZE, fill="#ffffff")
+            node.recolor()
+
+            canvas.create_oval(node.x-NODE_SIZE, node.y-NODE_SIZE, node.x+NODE_SIZE, node.y+NODE_SIZE, fill=self.colors[node.color])
             canvas.create_text(node.x, node.y, text=node.data)

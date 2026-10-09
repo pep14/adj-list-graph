@@ -1,8 +1,16 @@
 class Node:
     def __init__(self, data: str, x, y) -> None:
+        self.color = 0
         self.data = data
         self.x, self.y = x, y
         self.edges: list[list[Node, float]] = []
+
+    def recolor(self):
+        self.color = 0
+        edgeColors = {edge[0].color for edge in self.edges}
+
+        while self.color in edgeColors:
+            self.color += 1
     
     def connect(self, node: Node, edgeValue: float) -> bool:
         if type(node) != Node:

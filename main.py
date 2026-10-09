@@ -6,7 +6,7 @@ NODE_SIZE = 15
 
 
 class Main(Tk):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
         self.graph = Graph()
@@ -37,12 +37,12 @@ class Main(Tk):
         self.canvas.grid(row=0, column=2, rowspan=50)
 
         self.canvas.bind("<Button-1>", self.createNode)
-        self.canvas.bind("<Button-2>", self.deleteNode)
+        self.canvas.bind("<Button-2>", self.removeNode)
         self.canvas.bind("<Button-3>", self.selectNode)
 
         self.graph.draw(self.canvas)
 
-    def getNodeAt(self, x, y):
+    def getNodeAt(self, x, y) -> str | None:
         for data, node in self.graph.nodes.items():
             dx = node.x - x
             dy = node.y - y
@@ -52,7 +52,7 @@ class Main(Tk):
 
         return None
 
-    def selectNode(self, event):
+    def selectNode(self, event) -> None:
         data = self.getNodeAt(event.x, event.y)
 
         if data == None:
@@ -69,14 +69,14 @@ class Main(Tk):
             )
             self.selectedData = None
 
-    def createNode(self, event):
+    def createNode(self, event) -> None:
         x, y = event.x, event.y
 
         if self.getNodeAt(x, y) == None:
             self.graph.createNode(self.e1.get(), event.x, event.y)
             self.graph.draw(self.canvas)
 
-    def deleteNode(self, event):
+    def removeNode(self, event) -> None:
         data = self.getNodeAt(event.x, event.y)
        
         if data != None:
@@ -84,7 +84,7 @@ class Main(Tk):
 
         self.graph.draw(self.canvas)
 
-    def createEdge(self, data0, data1):
+    def createEdge(self, data0, data1) -> None:
         rawValue = self.e2.get()
 
         try:
@@ -99,7 +99,7 @@ class Main(Tk):
         )
         self.graph.draw(self.canvas)
 
-    def clear(self):
+    def clear(self) -> None:
         self.graph.nodes = {}
         self.graph.draw(self.canvas)
 

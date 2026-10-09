@@ -5,10 +5,11 @@ class Node:
         self.x, self.y = x, y
         self.edges: list[list[Node, float]] = []
 
-    def recolor(self):
+    def recolor(self) -> None:
         self.color = 0
         edgeColors = {edge[0].color for edge in self.edges}
 
+        # cycle through all connections, make sure theres no color match
         while self.color in edgeColors:
             self.color += 1
     
@@ -33,17 +34,17 @@ class Node:
         
         return True
 
-    def isolate(self):
+    def isolate(self) -> None:
         edges = self.edges.copy()
         for edge in edges:
             node = edge[0]
             self.mutualDisconnect(node)
 
-    def mutualDisconnect(self, node: Node):
+    def mutualDisconnect(self, node: Node) -> None:
         self.disconnect(node)
         node.disconnect(self)
 
-    def disconnect(self, node: Node):
+    def disconnect(self, node: Node) -> None:
         i = self.findEdge(node)
         del self.edges[i]
 

@@ -27,7 +27,7 @@ class Main(Tk):
             text="clear",
             command=self.clear
         )
-        self.b1.grid(row=2, column=0, columnspan=2)
+        self.b1(row=2, column=0, columnspan=2)
 
         self.canvas = Canvas(
             self,

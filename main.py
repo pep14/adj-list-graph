@@ -25,19 +25,40 @@ class Main(Tk):
         self.l2.grid(row=1, column=0)
         self.e2.grid(row=1, column=1)
 
-        self.b1 = Button(
-            self,
-            text="clear",
-            command=self.clear
-        )
-        self.b1.grid(row=2, column=0, columnspan=2)
-
         self.canvas = Canvas(
             self,
             height=800,
             width=800
         )
         self.canvas.grid(row=0, column=2, rowspan=50)
+
+        self.b1 = Button(
+            self,
+            text="clear",
+            command=self.clear
+        )
+        self.b1.grid(row=2, column=0, columnspan=2, sticky="nsew")
+
+        self.b2 = Button(
+            self,
+            text="MST (Prim)",
+            command=lambda: self.graph.drawMST(self.canvas, 0)
+        )
+        self.b2.grid(row=3, column=0, sticky="nsew")
+
+        self.b2 = Button(
+            self,
+            text="MST (Kruskal)",
+            command=lambda: self.graph.drawMST(self.canvas, 1)
+        )
+        self.b2.grid(row=3, column=1, sticky="nsew")
+
+        self.b4 = Button(
+            self,
+            text="clear MST",
+            command=self.clearMST
+        )
+        self.b4.grid(row=4, column=0, columnspan=2, sticky="nsew")
 
         self.canvas.bind("<Button-1>", self.createNode)
         self.canvas.bind("<Button-2>", self.removeNode)
@@ -105,6 +126,9 @@ class Main(Tk):
     def clear(self) -> None:
         self.graph.nodes = {}
         self.graph.draw(self.canvas)
+
+    def clearMST(self):
+        self.canvas.delete("MST")
 
 
 if __name__ == "__main__":
